@@ -4,7 +4,8 @@ v-app.whiteSmoke
 	NavBar
 	v-main
 		v-container.ml-4(fluid)
-			Payment
+			//- Payment
+			OrderHistory
 			//- SearchBar
 			//- Promotion
 			//- Menu
@@ -20,7 +21,8 @@ import Promotion from "./components/Menu/Promotion";
 import CheckOutNav from "./components/Menu/CheckOutNav";
 import AddMenu from "./components/Menu/AddMenu";
 import Menu from './components/Menu/Menu';
-import Payment from './components/Payment/Payment'
+import Payment from './components/Payment/Payment';
+import OrderHistory from './components/OrderHistory/OrderHistory';
 
 export default {
 	name: "App",
@@ -32,7 +34,8 @@ export default {
 		CheckOutNav,
 		AddMenu,
 		Menu,
-		Payment
+		Payment,
+		OrderHistory
 	},
 
 	data: () => ({
