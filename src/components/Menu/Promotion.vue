@@ -11,11 +11,11 @@ v-row(align="center", justify="start")
 			v-card-actions
 				v-spacer
 				v-btn(text)
-					v-text.text-decoration-none Learn more
+					div.text-decoration-none Learn more
 					v-icon.material-icons(right, small) arrow_right_alt
 	v-col.pl-8(cols="12")
 		h2 Tea Shop
-		subtitle-2 Select category you'd like to drink from
+		.subtitle-2 Select category you'd like to drink from
 	v-col.my-2.pl-6
 		v-chip.ma-2(v-for="item in categories" :key='item' color='white') {{ item }}
 </template>

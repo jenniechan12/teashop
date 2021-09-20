@@ -7,7 +7,7 @@ v-row(align='center' justify='start')
     v-col(cols='2')
         v-btn(depressed rounded color='white')
             v-icon.material-icons(left color='rgba(0, 0, 0, 0.54)') tune
-            v-text.text-decoration-none(color='rgba(0, 0, 0, 0.54)') Filters  
+            div.text-decoration-none(color='rgba(0, 0, 0, 0.54)') Filters  
 </template>
 <style scoped>
 

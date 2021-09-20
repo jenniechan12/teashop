@@ -2,7 +2,7 @@
 v-navigation-drawer(absolute permanent right width='20%')
 	v-list.ma-4(nav, dense)
 		v-list-item
-			v-row(no-gutters align='center' justify='center')
+			v-row(no-gutters align='center' justify='start')
 				v-col(cols='6')
 					v-icon.material-icons(color='#f97778') person
 					v-text.ml-2 Jenny

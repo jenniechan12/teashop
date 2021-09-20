@@ -4,28 +4,35 @@ v-app.whiteSmoke
 	NavBar
 	v-main
 		v-container.ml-4(fluid)
-			SearchBar
-			Promotion
+			Payment
+			//- SearchBar
+			//- Promotion
+			//- Menu
+			//- AddMenu
 			//- HelloWorld
-			CheckOutNav
+			//- CheckOutNav
 </template>
 
 <script>
 import NavBar from "./components/Navbar";
 import SearchBar from "./components/Menu/Search";
 import Promotion from "./components/Menu/Promotion";
-import HelloWorld from "./components/HelloWorld";
-import CheckOutNav from "./components/Menu/CheckOutNav.vue";
+import CheckOutNav from "./components/Menu/CheckOutNav";
+import AddMenu from "./components/Menu/AddMenu";
+import Menu from './components/Menu/Menu';
+import Payment from './components/Payment/Payment'
 
 export default {
 	name: "App",
 
 	components: {
-		HelloWorld,
 		NavBar,
 		SearchBar,
 		Promotion,
 		CheckOutNav,
+		AddMenu,
+		Menu,
+		Payment
 	},
 
 	data: () => ({
