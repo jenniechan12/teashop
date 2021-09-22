@@ -2,13 +2,13 @@
 <template lang="pug">
 v-app.whiteSmoke
 	NavBar
+	Alert
 	v-main
 		v-container.ml-4(fluid)
-			//- Payment
-			OrderHistory
-			//- SearchBar
-			//- Promotion
-			//- Menu
+			Home(v-if='currentPage === "Home"')
+			Menu(v-else-if='currentPage === "Menu"')
+			OrderHistory(v-else-if='currentPage === "Order History"')
+			Payment(v-else-if='currentPage == "Payment"')
 			//- AddMenu
 			//- HelloWorld
 			//- CheckOutNav
@@ -16,28 +16,33 @@ v-app.whiteSmoke
 
 <script>
 import NavBar from "./components/Navbar";
-import SearchBar from "./components/Menu/Search";
-import Promotion from "./components/Menu/Promotion";
+import Alert from "./components/Home/Alert";
+import Home from "./components/Home/Home";
 import CheckOutNav from "./components/Menu/CheckOutNav";
 import AddMenu from "./components/Menu/AddMenu";
 import Menu from './components/Menu/Menu';
 import Payment from './components/Payment/Payment';
 import OrderHistory from './components/OrderHistory/OrderHistory';
 
+// Vuex
+import { mapGetters } from 'vuex'
+
 export default {
 	name: "App",
 
 	components: {
 		NavBar,
-		SearchBar,
-		Promotion,
+		Alert,
+		Home,
 		CheckOutNav,
 		AddMenu,
 		Menu,
 		Payment,
 		OrderHistory
 	},
-
+	computed: {
+		...mapGetters({currentPage: 'getCurrentPage'})
+	},
 	data: () => ({
 		//
 	}),

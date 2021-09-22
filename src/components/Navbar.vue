@@ -1,7 +1,7 @@
 <template lang="pug">
 v-navigation-drawer.salmon.borderRight(app, expand-on-hover, dark)
 	v-list(nav, dense)
-		v-list-item(v-for="item in links" :key="item.text" link)
+		v-list-item(v-for="item in links" :key="item.text" link @click='UpdatePage(item.text)')
 			v-list-item-icon
 				v-icon.material-icons {{ item.icon }}
 			v-list-item-title {{ item.text }}
@@ -19,6 +19,11 @@ export default {
 			],
 		};
 	},
+	methods: {
+		UpdatePage: function(page){
+			this.$store.commit('updateCurrentPage', page);
+		}
+	}
 };
 </script>
 <style scoped>

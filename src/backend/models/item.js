@@ -1,17 +1,16 @@
-export default class Item {
-	constructor(name, description, price, addOns, tags) {
+class Item {
+	constructor(name, description, price, tags, reviews, numberOfReviews) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.addOns = addOns;
 		this.tags = tags;
+		this.reviews = reviews;
+		this.numberOfReviews = numberOfReviews;
 	}
 
 	get item() {
 		return this;
 	}
-
-	addAddOns(addOn) {
-		this.addOns.push(addOn);
-	}
 }
+
+module.exports.Item = Item;

@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "start": "set NODE_ENV=dev && node app.js",
+    "start": "set NODE_ENV=dev && nodemon app.js",
     "lint": "vue-cli-service lint",
     "deploy": "sh deploy.sh"
   },
@@ -22,7 +22,8 @@
     "socket.io": "^4.2.0",
     "v-mask": "^2.2.4",
     "vue": "^2.6.11",
-    "vuetify": "^2.4.0"
+    "vuetify": "^2.4.0",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
