@@ -118,7 +118,10 @@ export default {
 			let numberOfReviews = Math.floor(Math.random() * (max-min + 1) + min);
 
 			let item = new ItemClass.Item(this.name, this.description, this.price, this.selectedTags, reviews, numberOfReviews);
-			console.log(item);
+			console.log(this.$socket);
+			console.log('hey');
+
+			this.$socket.client.emit('AddMenuItem', item);
 		},
 		ResetForm: function()
 		{

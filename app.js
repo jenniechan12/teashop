@@ -5,24 +5,25 @@ const cors = require('cors');
 const app = express();
 const path = require('path');
 
+// create static url
+app.use(express.static('public'));
+
+if (process.env.NODE_ENV.trim() === 'production')
+	app.use('/teashop', express.static(path.join(__dirname, 'dist')));
+else if (process.env.NODE_ENV.trim() === 'dev')
+	app.use('/teashop', express.static(path.join(__dirname, 'src/views/')));
+
+// use cors
+let corsOption = { origin: 'http://localhost:81' };
+app.use(cors(corsOption));
+
 // parse application/json
 app.use(express.json());
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// use cors
-let corsOption = { origin: 'http://localhost:80' };
-app.use(cors(corsOption));
-
 console.log(process.env.NODE_ENV);
-
-// create static url
-app.use(express.static('public'));
-if (process.env.NODE_ENV === 'production')
-	app.use('/teashop', express.static(path.join(__dirname, 'dist')));
-else if (process.env.NODE_ENV === 'dev')
-	app.use('/teashop', express.static(path.join(__dirname, 'public')));
 
 // MongoDB
 let mongodb = require('./src/backend/mongo/connect');
@@ -35,7 +36,7 @@ mongodb.connect(url, () => {
 	const io = new Server(server);
 
 	app.get('/teashop', (req, res) => {
-		res.sendFile(__dirname + '\\dist\\index.html');
+		res.sendFile(path.join(__dirname, 'src/views/index.html'));
 	});
 
 	// Socket.io connection
