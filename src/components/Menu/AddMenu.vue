@@ -133,11 +133,4 @@ export default {
 	},
 };
 </script>
-<style scoped>
-.salmon {
-	background-color: #f97778 !important;
-}
-.whiteSmoke {
-	background-color: #f0f4f7f5 !important;
-}
-</style>
+

@@ -54,7 +54,7 @@ v-dialog(v-model="openMenuCart", persistent, max-width="600px")
 				min="1",
 				max="999",
 				:maxlength="maxLength",
-				v-mask="\"###\""
+				v-mask='"###"'
 			)
 			v-btn(
 				icon,

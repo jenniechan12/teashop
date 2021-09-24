@@ -4,7 +4,7 @@ v-app.whiteSmoke
 	NavBar
 	Alert
 	v-main
-		v-container.ml-4(fluid)
+		v-container(fluid)
 			Home(v-if='currentPage === "Home"')
 			Menu(v-else-if='currentPage === "Menu"')
 			OrderHistory(v-else-if='currentPage === "Order History"')
@@ -48,7 +48,10 @@ export default {
 	}),
 };
 </script>
-<style scoped>
+<style>
+.salmon {
+	background-color: #f97778 !important;
+}
 .whiteSmoke {
 	background-color: #f0f4f7f5 !important;
 }
