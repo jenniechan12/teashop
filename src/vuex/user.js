@@ -11,6 +11,7 @@ const userVuex = {
 			{ type: 'American Express', card: '9876543210987654', expire: '12/34' },
 			{ type: 'Visa', card: '0147852369014725', expire: '02/25' },
 		],
+		orderHistory: [],
 	},
 	getters: {
 		getCurrentPage: function(state) {
@@ -22,6 +23,9 @@ const userVuex = {
 		getCurrentPayments: function(state) {
 			return state.currentPayments;
 		},
+		getOrderHistory: function(state) {
+			return state.orderHistory;
+		},
 	},
 	mutations: {
 		updateCurrentPage: (state, payload) => {
@@ -32,6 +36,9 @@ const userVuex = {
 		},
 		updateCurrentPayments: (state, payload) => {
 			state.currentPayments = payload;
+		},
+		updateOrderHistory: (state, payload) => {
+			state.orderHistory = payload;
 		},
 	},
 	actions: {},

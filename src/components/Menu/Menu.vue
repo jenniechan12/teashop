@@ -32,6 +32,7 @@ div
 
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import SearchBar from './Search';
 import Promotion from './Promotion';
 import MenuCartDialog from './MenuCart';
@@ -44,159 +45,29 @@ export default {
 		MenuCartDialog,
 		AddMenu
 	},
-
 	data() {
 		return {
 			isEditMode: false,
 			openAddMenu: false,
 			openMenuCart: false,
-
-			items: [
-				{
-					name: 'Almond Milk Tea',
-					description: 'blah blah blah blah blah',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-				{
-					name: 'Almond Milk Tea',
-					description: '',
-					price: 4.5,
-					addOns: [],
-					tags: [],
-					reviews: 5.0,
-					numberOfReviews: 123,
-				},
-			],
 			selectedItem: {},
 		};
+	},
+		computed: {
+		...mapGetters({items: 'getMenuItems'})
+	},
+	beforeMount()
+	{
+		console.log('before mounted - menu');
+		this.RetrieveMenuItems();
 	},
 	methods: {
 		InUSD: function(price) {
 			return `$${price.toFixed(2)}`;
 		},
 		FormatReviews: function(item) {
-			return `${item.reviews.toFixed(1)}(${item.numberOfReviews})`;
+			console.log(item);
+			return `${item.reviews}(${item.numberOfReviews})`;
 		},
 		OpenAddMenu: function()
 		{
@@ -207,6 +78,17 @@ export default {
 			this.openMenuCart = true;
 			// console.log(this.selectedItem);
 		},
+		RetrieveMenuItems: function()
+		{
+			this.$socket.client.emit('RetrieveMenuItems'); 
+		}
 	},
+	sockets:
+	{
+		RETRIEVE_MENU_ITEMS: function(data){
+			console.log(data);
+			this.$store.commit('updateMenuItems', data.items);
+		}
+	}
 };
 </script>

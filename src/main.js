@@ -7,7 +7,9 @@ import { VueMaskDirective } from 'v-mask';
 // Vuex
 Vue.use(Vuex);
 import userVuex from './vuex/user';
-const store = new Vuex.Store({ modules: { user: userVuex } });
+import itemVuex from './vuex/items';
+
+const store = new Vuex.Store({ modules: { user: userVuex, items: itemVuex } });
 
 Vue.config.productionTip = false;
 Vue.directive('mask', VueMaskDirective);

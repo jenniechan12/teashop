@@ -117,9 +117,9 @@ export default {
 			let min = 40, max= 250;
 			let numberOfReviews = Math.floor(Math.random() * (max-min + 1) + min);
 
-			let item = new ItemClass.Item(this.name, this.description, this.price, this.selectedTags, reviews, numberOfReviews);
-			console.log(this.$socket);
-			console.log('hey');
+			let price = parseFloat(this.price).toFixed(2);
+
+			let item = new ItemClass.Item(this.name, this.description, price, this.selectedTags, reviews, numberOfReviews);
 
 			this.$socket.client.emit('AddMenuItem', item);
 		},

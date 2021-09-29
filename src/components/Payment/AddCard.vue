@@ -33,7 +33,6 @@ v-dialog(v-model='openAddCard' persistent :fullscreen='$vuetify.breakpoint.smAnd
 							)
 
 		v-divider.mx-4
-		v-spacer
 		v-card-actions
 			v-row.ma-4(align='center', justify='center', no-gutters)
 				v-col(cols='12')

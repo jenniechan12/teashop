@@ -6,7 +6,7 @@ const app = express();
 const path = require('path');
 
 // create static url
-app.use(express.static('public'));
+app.use(express.static('dist'));
 
 if (process.env.NODE_ENV.trim() === 'production')
 	app.use('/teashop', express.static(path.join(__dirname, 'dist')));
