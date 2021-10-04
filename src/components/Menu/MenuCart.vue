@@ -65,7 +65,7 @@ v-dialog(v-model="openMenuCart", persistent, max-width="600px")
 				v-icon.material-icons add_circle_outline
 
 			//- Add To Cart Button
-			v-btn.rounded-xl(color="#f97778", dark) {{ updateCheckoutText }}
+			v-btn.rounded-xl(color="#f97778", dark @click='AddToCart()') {{ updateCheckoutText }}
 </template>
 <script>
 export default {
@@ -145,7 +145,24 @@ export default {
 			this.quantity = 1;
 			this.$emit('update:openMenuCart', false);
 		},
+		AddToCart: function(){
+			let menuItem = {
+				item: this.item,
+				size: this.size,
+				addOns: this.addOns,
+				iceLevel: this.iceLevel,
+				sweetnessLevel: this.sweetnessLevel,
+				subtotal: this.total
+			};
 
+			let order = {
+				menuItem,
+				quantity: this.quantity
+			};
+
+			console.log(order);
+			this.$emit('addToCart', this.order);
+		},
 		USDFormat: function(price) {
 			if (price === 0) return ``;
 			else return `+$${price.toFixed(2)}`;

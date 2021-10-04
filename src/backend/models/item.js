@@ -8,9 +8,24 @@ class Item {
 		this.numberOfReviews = numberOfReviews;
 	}
 
-	get item() {
-		return this;
+	printItem() {
+		console.log(`${this.name} - ${this.description}: $${this.price}`);
+		console.log(`${this.reviews} (${this.numberOfReviews})`);
 	}
 }
 
-module.exports.Item = Item;
+class OrderItem extends Item {
+	constructor(item, addOns, total) {
+		super(item);
+		this.addOns = addOns;
+		this.total = total;
+	}
+
+	showOrder() {
+		this.printItem();
+		console.log(`AddOns: ${this.addOns}`);
+		console.log(`Total: $${this.total}`);
+	}
+}
+
+module.exports.Item = { Item, OrderItem };

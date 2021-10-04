@@ -35,8 +35,6 @@ module.exports = (io) => {
 				.find({}, { $sort: { name: 1 } })
 				.toArray();
 
-			console.log(items);
-
 			// Get Distinct Tags
 			let tags = [];
 			items.forEach((item) => {
@@ -44,8 +42,6 @@ module.exports = (io) => {
 					if (!tags.includes(tag)) tags.push(tag);
 				});
 			});
-
-			console.log(tags);
 
 			io.to(socket.id).emit('RETRIEVE_MENU_ITEMS', {
 				items: items,

@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-	v-row
+	//- v-row
 		v-col(cols='12')
 			v-spacer
 			v-btn(v-if='!isEditMode' icon @click='isEditMode=true;')
@@ -12,7 +12,7 @@ div
 	v-row.ma-0
 		v-col(cols='12' sm='10' md='8')
 			v-row.mr-4
-				v-col.d-flex.flex-column(v-for='(item, index) in items' :key='index' cols='4')
+				v-col.d-flex.flex-column(v-for='(item, index) in items' :key='index' cols='11' sm='6' md='4')
 					v-card.d-flex.flex-column.flex.rounded-xl(flat @click='OpenAddCart(item)')
 						v-card-text.flex()
 							v-row(align='start' justify='center' no-gutters)
@@ -26,8 +26,9 @@ div
 								v-col(cols='4')
 									v-avatar(size='48' color='#f97778')
 										v-card-subtitle.white--text {{ InUSD(item.price) }}
-	MenuCartDialog(:openMenuCart.sync='openMenuCart' :item.sync='selectedItem')
-	AddMenu(:openAddMenu.sync='openAddMenu')
+	MenuCartDialog(:openMenuCart.sync='openMenuCart' :item.sync='selectedItem' @addToCart='AddToCart(order)')
+	//- AddMenu(:openAddMenu.sync='openAddMenu')
+	ShoppingCart(:cart.sync='cart')
 
 
 </template>
@@ -37,13 +38,15 @@ import SearchBar from './Search';
 import Promotion from './Promotion';
 import MenuCartDialog from './MenuCart';
 import AddMenu from './AddMenu';
+import ShoppingCart from './ShoppingCart';
 
 export default {
 	components: {
 		SearchBar,
 		Promotion,
 		MenuCartDialog,
-		AddMenu
+		AddMenu,
+		ShoppingCart
 	},
 	data() {
 		return {
@@ -51,6 +54,7 @@ export default {
 			openAddMenu: false,
 			openMenuCart: false,
 			selectedItem: {},
+			cart: [],
 		};
 	},
 		computed: {
@@ -66,7 +70,6 @@ export default {
 			return `$${price.toFixed(2)}`;
 		},
 		FormatReviews: function(item) {
-			console.log(item);
 			return `${item.reviews}(${item.numberOfReviews})`;
 		},
 		OpenAddMenu: function()
@@ -78,6 +81,10 @@ export default {
 			this.openMenuCart = true;
 			// console.log(this.selectedItem);
 		},
+		AddToCart: function(order)
+		{
+			this.cart.push(order);
+		},
 		RetrieveMenuItems: function()
 		{
 			this.$socket.client.emit('RetrieveMenuItems'); 
@@ -86,7 +93,6 @@ export default {
 	sockets:
 	{
 		RETRIEVE_MENU_ITEMS: function(data){
-			console.log(data);
 			this.$store.commit('updateMenuItems', data.items);
 		}
 	}
